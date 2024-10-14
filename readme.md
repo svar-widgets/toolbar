@@ -1,16 +1,14 @@
-### :star: SVAR Toolbar for Svelte
+<div align="center">
+	
+# SVAR Svelte Toolbar
 
-SVAR Toolbar provides ready to use control for creating button panels
+[![npm](https://img.shields.io/npm/v/wx-svelte-toolbar.svg)](https://www.npmjs.com/package/wx-svelte-toolbar)
+[![License](https://img.shields.io/github/license/svar-widgets/toolbar)](https://github.com/svar-widgets/toolbar/blob/main/license.txt)
+[![npm downloads](https://img.shields.io/npm/dm/wx-svelte-toolbar.svg)](https://www.npmjs.com/package/wx-svelte-toolbar)
 
-### :link: Useful Links
+</div>
 
--   [Documentation](https://docs.svar.dev/svelte/core/overview)
--   [How to start guide](https://docs.svar.dev/svelte/core/getting_started/)
--   [Demos](https://docs.svar.dev/svelte/toolbar/samples/#/base/willow)
-
-### :page_with_curl: License
-
-SVAR Toolbar for Svelte is available under MIT license.
+A Svelte UI component for building flexible button panels, from simple button sets to complex structures with numerous buttons and select boxes. It provides an easy way to organize and display multiple toolbar items, with support for multiline layouts and collapsible item groups that can be shown on demand.
 
 ### How to Use
 
