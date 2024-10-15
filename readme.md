@@ -8,6 +8,12 @@
 
 </div>
 
+<div align="center">
+
+[Documentation](https://docs.svar.dev/svelte/core/toolbar/) • [Demos](https://docs.svar.dev/svelte/core/samples-toolbar/#/base/willow)
+
+</div>
+
 A Svelte UI component for building flexible button panels, from simple button sets to complex structures with numerous buttons and select boxes. It provides an easy way to organize and display multiple toolbar items, with support for multiline layouts and collapsible item groups that can be shown on demand.
 
 ### How to Use
