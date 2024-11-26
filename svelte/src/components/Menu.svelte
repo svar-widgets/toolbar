@@ -1,18 +1,12 @@
 <script>
-	import { createEventDispatcher } from "svelte";
 	import BarComponent from "./BarComponent.svelte";
 	import Group from "./Group.svelte";
 	import { Dropdown, Button } from "wx-svelte-core";
 
-	export let items = [];
-	export let css;
-	export let values;
+	let { items = [], css, values, width, onclick, onchange } = $props();
 
-	const dispatch = createEventDispatcher();
-
-	export let width;
-	let popup;
-	let div;
+	let popup = $state();
+	let div = $state();
 
 	function cancel() {
 		popup = null;
@@ -22,12 +16,12 @@
 	}
 	function menuClick(ev) {
 		cancel();
-		dispatch("click", ev.detail);
+		onclick && onclick(ev);
 	}
 </script>
 
 <div class="wx-menu {css || ''}" bind:this={div} data-id="$menu">
-	<Button icon="wxi-dots-h" click={showMenu} />
+	<Button icon="wxi-dots-h" onclick={showMenu} />
 	{#if popup}
 		<Dropdown width="{width}px" {cancel}>
 			<div class="wx-drop-menu">
@@ -37,16 +31,16 @@
 							{item}
 							{values}
 							menu={true}
-							on:click={menuClick}
-							on:change
+							onclick={menuClick}
+							{onchange}
 						/>
 					{:else}
 						<BarComponent
 							{item}
 							{values}
 							menu={true}
-							on:click={menuClick}
-							on:change
+							onclick={menuClick}
+							{onchange}
 						/>
 					{/if}
 				{/each}

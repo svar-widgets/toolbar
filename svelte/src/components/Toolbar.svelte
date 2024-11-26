@@ -4,32 +4,29 @@
 	import BarComponent from "./BarComponent.svelte";
 
 	import { uid } from "wx-lib-dom";
-	import { createEventDispatcher, onMount, tick } from "svelte";
+	import { onMount, tick } from "svelte";
 
-	export let items = [];
-	export let menuCss = "";
-	export let css;
-	export let values = null;
-	export let overflow = "menu";
+	let {
+		items = $bindable([]),
+		menuCss = "",
+		css,
+		values = $bindable(null),
+		overflow = "menu",
+		onclick,
+		onchange,
+	} = $props();
 
-	const dispatch = createEventDispatcher();
 	function handleChange(ev) {
 		if (values) {
-			values[ev.detail.item.key] = ev.detail.value;
+			values[ev.item.key] = ev.value;
 			values = values;
 		}
-		dispatch("change", ev.detail);
+		onchange && onchange(ev);
 	}
 
-	let div;
-
+	let div = null;
 	let lastToolbarState = -1;
-	let menuItems = [];
-	let visibleItems;
-	$: {
-		normalize(items);
-		visibleItems = items;
-	}
+	let menuItems = $state([]);
 
 	function processOverflow() {
 		if (overflow === "wrap") return;
@@ -102,6 +99,9 @@
 				items[i].$width = div.children[i].offsetWidth;
 				// check after dom update, maybe we need to close more
 				tick().then(processOverflow);
+
+				// items are not deep reactive, so we need to trigger the update
+				items = [...items];
 				return;
 			}
 		}
@@ -120,6 +120,8 @@
 					// check after dom update, maybe we can open one more
 					tick().then(processOverflow);
 				}
+
+				items = [...items];
 				return;
 			}
 		}
@@ -130,6 +132,7 @@
 		items.forEach(item => {
 			if (!item.id) item.id = uid();
 		});
+		return items;
 	}
 
 	onMount(() => {
@@ -140,6 +143,8 @@
 			if (resizeObserver) resizeObserver.unobserve(div);
 		};
 	});
+
+	const visibleItems = $derived(normalize(items));
 </script>
 
 <div
@@ -147,11 +152,11 @@
 	class:wx-wrap={overflow === "wrap"}
 	bind:this={div}
 >
-	{#each visibleItems as item, i}
+	{#each visibleItems as item}
 		{#if item.items}
-			<Group {item} {values} on:click on:change={handleChange} />
+			<Group {item} {values} {onclick} onchange={handleChange} />
 		{:else}
-			<BarComponent {item} {values} on:click on:change={handleChange} />
+			<BarComponent {item} {values} {onclick} onchange={handleChange} />
 		{/if}
 	{/each}
 	{#if menuItems.length}
@@ -159,8 +164,8 @@
 			items={menuItems}
 			css={menuCss}
 			{values}
-			on:click
-			on:change={handleChange}
+			{onclick}
+			onchange={handleChange}
 		/>
 	{/if}
 </div>

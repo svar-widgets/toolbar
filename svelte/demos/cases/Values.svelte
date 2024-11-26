@@ -2,14 +2,14 @@
 	import { Toolbar } from "../../src/index";
 	import { Slider, Button } from "wx-svelte-core";
 
-	let message = "";
+	let message = $state("");
 	const handler = ev => {
-		const { value, item } = ev.detail;
+		const { value, item } = ev;
 		message = `${item.key} changed: ${value}`;
 	};
 
-	let values = { x1: 15, x2: 15 };
-	let values2 = { x1: 15 };
+	let values = $state({ x1: 15, x2: 15 });
+	let values2 = $state({ x1: 15 });
 </script>
 
 <div class="demo-status">{message}</div>
@@ -24,12 +24,12 @@
 		]}
 		css="demo-toolbar"
 		bind:values
-		on:change={handler}
+		onchange={handler}
 	/>
 	<span class="demo-code">{JSON.stringify(values)}</span>
 	<br />
-	<Button text="Reset x1" on:click={() => (values.x1 = 1)} />
-	<Button text="Reset x2" on:click={() => (values.x2 = 1)} />
+	<Button text="Reset x1" onclick={() => (values.x1 = 1)} />
+	<Button text="Reset x2" onclick={() => (values.x2 = 1)} />
 </div>
 
 <div class="demo-box">
@@ -42,6 +42,6 @@
 		]}
 		css="demo-toolbar"
 		bind:values={values2}
-		on:change={handler}
+		onchange={handler}
 	/>
 </div>

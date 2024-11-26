@@ -4,8 +4,8 @@
 
 	registerToolbarItem("richselect", RichSelect);
 
-	let message = "";
-	let width = 650;
+	let message = $state("");
+	let width = $state(650);
 
 	let fontFamily = "Arial";
 	let fontFamilyData = [
@@ -27,7 +27,7 @@
 		message = "Button '" + item.id + "' clicked";
 	}
 	function onChange(ev, item) {
-		const { selected } = ev.detail;
+		const { selected } = ev;
 		const value = selected.id;
 		message = item.id + " changed: " + value;
 	}

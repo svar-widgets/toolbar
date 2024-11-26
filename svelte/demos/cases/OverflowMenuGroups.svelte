@@ -4,8 +4,8 @@
 
 	registerToolbarItem("richselect", RichSelect);
 
-	let message = "";
-	let width = 650;
+	let message = $state("");
+	let width = $state(650);
 
 	let fontFamily = "Arial";
 	let fontFamilyData = [

@@ -42,6 +42,22 @@ To use the widget, simply import the package and include the component in your S
 <Toolbar {items} />
 ```
 
+### Svelte 4 and Svelte 5 versions
+
+There are two versions of the library: the 1.x version, designed to work with Svelte 4, and the 2.x version, created for Svelte 5. Please note that the 2.x version is in beta and may contain some instabilities.
+
+To use the SVAR Toolbar beta for Svelte 5, install it as follows:
+
+```
+npm install wx-svelte-toolbar
+```
+
+To use the SVAR Toolbar for Svelte 4:
+
+```
+npm install wx-svelte-toolbar@1.3.0
+```
+
 ### How to Modify
 
 Typically, you don't need to modify the code. However, if you wish to do so, follow these steps:

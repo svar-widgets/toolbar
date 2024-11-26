@@ -18,9 +18,9 @@
 		MultiCombo,
 	} from "wx-svelte-core";
 
-	let message = "";
+	let message = $state("");
 	const handler = ev => {
-		const { value, item } = ev.detail;
+		const { value, item } = ev;
 		message = `${item.key} changed: ${value}`;
 	};
 </script>
@@ -36,7 +36,7 @@
 		]}
 		css="demo-toolbar"
 		values={{ x: 15 }}
-		on:change={handler}
+		onchange={handler}
 	/>
 </div>
 
@@ -45,7 +45,7 @@
 		items={[{ text: "Text" }, { comp: "spacer" }, { comp: Text, key: "x" }]}
 		css="demo-toolbar"
 		values={{ x: "some" }}
-		on:change={handler}
+		onchange={handler}
 	/>
 </div>
 
@@ -65,7 +65,7 @@
 		]}
 		css="demo-toolbar tabs"
 		values={{ x: 1 }}
-		on:change={handler}
+		onchange={handler}
 	/>
 </div>
 
@@ -85,7 +85,7 @@
 		]}
 		css="demo-toolbar"
 		values={{ x: 1 }}
-		on:change={handler}
+		onchange={handler}
 	/>
 </div>
 
@@ -98,7 +98,7 @@
 		]}
 		css="demo-toolbar"
 		values={{ x: true }}
-		on:change={handler}
+		onchange={handler}
 	/>
 </div>
 
@@ -111,7 +111,7 @@
 		]}
 		css="demo-toolbar"
 		values={{ x: true }}
-		on:change={handler}
+		onchange={handler}
 	/>
 </div>
 
@@ -126,13 +126,14 @@
 					{ label: "One", value: 1 },
 					{ label: "Two", value: 2 },
 				],
+				value: [],
 				type: "inline",
 				key: "x",
 			},
 		]}
 		css="demo-toolbar"
 		values={{ x: [2] }}
-		on:change={handler}
+		onchange={handler}
 	/>
 </div>
 
@@ -145,7 +146,7 @@
 		]}
 		css="demo-toolbar"
 		values={{ x: false }}
-		on:change={handler}
+		onchange={handler}
 	/>
 </div>
 
@@ -158,7 +159,7 @@
 		]}
 		css="demo-toolbar"
 		values={{ x: "#e7a90b" }}
-		on:change={handler}
+		onchange={handler}
 	/>
 </div>
 
@@ -171,7 +172,7 @@
 		]}
 		css="demo-toolbar"
 		values={{ x: "#e7a90b" }}
-		on:change={handler}
+		onchange={handler}
 	/>
 </div>
 
@@ -184,7 +185,7 @@
 		]}
 		css="demo-toolbar"
 		values={{ x: new Date() }}
-		on:change={handler}
+		onchange={handler}
 	/>
 </div>
 
@@ -205,7 +206,7 @@
 		]}
 		css="demo-toolbar"
 		values={{ x: 2 }}
-		on:change={handler}
+		onchange={handler}
 	/>
 </div>
 
@@ -227,7 +228,7 @@
 		]}
 		css="demo-toolbar"
 		values={{ x: 2 }}
-		on:change={handler}
+		onchange={handler}
 	/>
 </div>
 
@@ -249,7 +250,7 @@
 		]}
 		css="demo-toolbar"
 		values={{ x: [2] }}
-		on:change={handler}
+		onchange={handler}
 	/>
 </div>
 
@@ -262,7 +263,7 @@
 		]}
 		css="demo-toolbar"
 		values={{ x: 2 }}
-		on:change={handler}
+		onchange={handler}
 	/>
 </div>
 

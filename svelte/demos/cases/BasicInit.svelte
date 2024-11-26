@@ -1,6 +1,6 @@
 <script>
 	import { Toolbar } from "../../src/index";
-	let message = "";
+	let message = $state("");
 	function onClick(item) {
 		message = "Button '" + item.id + "' clicked";
 	}

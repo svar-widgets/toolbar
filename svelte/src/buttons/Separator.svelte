@@ -1,5 +1,11 @@
 <script>
-	export let menu = false;
+	/**
+	 * @typedef {Object} Props
+	 * @property {boolean} [menu]
+	 */
+
+	/** @type {Props} */
+	let { menu = false } = $props();
 </script>
 
 <div class="wx-separator{menu ? '-menu' : ''}">&nbsp;</div>
