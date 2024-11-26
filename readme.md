@@ -28,7 +28,7 @@ To use the SVAR Toolbar v.2.0 beta for Svelte 5, install it as follows:
 npm install wx-svelte-toolbar
 ```
 
-To use the SVAR Core for Svelte 4:
+To use the SVAR Toolbar for Svelte 4:
 
 ```
 npm install wx-svelte-toolbar@1.3.0
