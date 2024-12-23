@@ -3,6 +3,7 @@
 	import { wrap } from "svelte-spa-router/wrap";
 
 	import { links } from "../demos/routes.js";
+	import { links as localLinks } from "./routes.js";
 
 	import {
 		Material,
@@ -10,6 +11,7 @@
 		WillowDark,
 		Globals,
 		Locale,
+		popupContainer,
 	} from "wx-svelte-core";
 
 	const defRoute = links[0][0].replace(/\/:skin$/, "/willow");
@@ -23,13 +25,14 @@
 		}),
 	};
 
-	let skin = "willow";
+	let skin = $state("willow");
 	function onRouteChange(path) {
 		const parts = path.split("/");
 		skin = parts[2];
 	}
 
-	links.forEach(a => {
+	const allLinks = [...localLinks, ...links];
+	allLinks.forEach(a => {
 		const [path, , component] = a;
 		routes[path] = wrap({
 			component,
@@ -46,7 +49,7 @@
 <WillowDark />
 <Material />
 
-<div class="wx-{skin}-theme content">
+<div class="wx-{skin}-theme content" use:popupContainer>
 	<Locale>
 		<Globals>
 			<Router {routes} />

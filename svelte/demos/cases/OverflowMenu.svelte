@@ -1,8 +1,8 @@
 <script>
 	import { Toolbar } from "../../src/index";
 
-	let width = 260;
-	let message = "";
+	let width = $state(270);
+	let message = $state("");
 
 	function onClick(item) {
 		message = "Button '" + item.id + "' clicked";
@@ -29,11 +29,11 @@
 		},
 		{ comp: "spacer" },
 		{
-			id: "print",
+			id: "info",
 			comp: "icon",
-			icon: "wxo-print",
+			icon: "wxi-information-outline",
 			handler: onClick,
-			text: "Print",
+			text: "Info",
 		},
 		{ comp: "separator" },
 		{

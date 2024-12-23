@@ -1,45 +1,24 @@
 <script>
-	import { createEventDispatcher } from "svelte";
-	import { writable } from "svelte/store";
-
-	const dispatch = createEventDispatcher();
-
 	import { getItemHandler } from "../helpers";
 	import Separator from "../buttons/Separator.svelte";
 	import Spacer from "../buttons/Spacer.svelte";
 
-	export let item = {};
-	export let menu = false;
-	export let values;
+	let { item = {}, menu = false, values, onclick, onchange } = $props();
 
-	let itemComponent;
-	$: itemComponent = getItemHandler(item.comp || "label");
+	let itemComponent = $derived(getItemHandler(item.comp || "label"));
 
 	function onClick() {
 		if (item.handler) item.handler(item);
-		dispatch("click", { item });
+		onclick && onclick({ item });
 	}
 
-	let value = writable(null);
-	let ignore = false;
-	value.subscribe(nv => {
-		if (!ignore) dispatch("change", { value: nv, item });
-	});
-
-	$: {
-		if (item.key) {
-			ignore = true;
-			if (values) {
-				$value = values[item.key];
-			} else {
-				$value = undefined;
-			}
-			ignore = false;
-		}
+	let value = $derived(item.key ? values[item.key] : undefined);
+	function detectChange({ value }) {
+		if (item.handler) item.handler(item, value);
+		onchange && onchange({ value, item });
 	}
 
-	let text = "";
-	$: text = menu ? item.menuText || item.text : item.text;
+	const text = $derived(menu ? item.menuText || item.text : item.text);
 </script>
 
 {#if item.comp == "spacer"}
@@ -47,16 +26,17 @@
 {:else if item.comp == "separator"}
 	<Separator {menu} />
 {:else}
+	{@const SvelteComponent = itemComponent}
 	<div
 		class="wx-tb-element {item.css || ''}"
 		class:wx-spacer={item.spacer}
 		class:wx-menu={menu}
 		data-id={item.id}
 	>
-		<svelte:component
-			this={itemComponent}
-			bind:value={$value}
-			on:click={onClick}
+		<SvelteComponent
+			{value}
+			onchange={detectChange}
+			onclick={onClick}
 			{text}
 			{menu}
 			{...item}

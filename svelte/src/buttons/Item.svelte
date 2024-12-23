@@ -1,20 +1,16 @@
 <script>
-	import { createEventDispatcher } from "svelte";
-	const dispatch = createEventDispatcher();
-
-	export let id = "";
-	export let text = "";
-	export let css = "";
-	export let icon = "";
+	let { id = "", text = "", css = "", icon = "", onclick } = $props();
 
 	function handleClick() {
-		dispatch("click", { id });
+		onclick && onclick({ id });
 	}
 </script>
 
-<div class="wx-label {css}" on:click={handleClick}>
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<div class="wx-label {css}" onclick={handleClick}>
 	{#if icon}
-		<i class={icon} />
+		<i class={icon}></i>
 	{/if}
 	{text}
 </div>

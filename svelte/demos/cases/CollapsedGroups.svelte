@@ -4,18 +4,18 @@
 
 	registerToolbarItem("richselect", RichSelect);
 
-	let message = "";
+	let message = $state("");
 
 	let fontFamilyData = [
-		{ id: "Arial", name: "Arial" },
-		{ id: "Tahoma", name: "Tahoma" },
-		{ id: "Times New Roman", name: "Times" },
+		{ id: "Arial", label: "Arial" },
+		{ id: "Tahoma", label: "Tahoma" },
+		{ id: "Times New Roman", label: "Times" },
 	];
 	let fontSizeData = [
-		{ id: "12px", name: "12" },
-		{ id: "14px", name: "14" },
-		{ id: "16px", name: "16" },
-		{ id: "18px", name: "18" },
+		{ id: "12px", label: "12" },
+		{ id: "14px", label: "14" },
+		{ id: "16px", label: "16" },
+		{ id: "18px", label: "18" },
 	];
 	const values = {
 		"font-family": "Arial",
@@ -25,13 +25,11 @@
 	function onClick(item) {
 		message = "Button '" + item.id + "' clicked";
 	}
-	function onChange(ev, item) {
-		const { selected } = ev.detail;
-		const value = selected.id;
-		message = item.id + " changed: " + value;
+	function onChange(item, value) {
+		message = item.key + " changed: " + value;
 	}
 
-	let width = 600;
+	let width = $state(600);
 	function changeWidth() {
 		width = width == 600 ? 450 : width == 450 ? 350 : 600;
 	}

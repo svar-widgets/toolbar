@@ -1,21 +1,18 @@
 <script>
 	import { Button } from "wx-svelte-core";
-	export let icon;
-	export let text;
-	export let css;
-	export let type;
-	export let disabled;
 
-	export let menu;
+	let { icon, text, css, type, disabled, menu, onclick } = $props();
 </script>
 
 {#if menu}
-	<div class="wx-item" on:click>
-		{#if icon}<i class="{icon} {css}" />{/if}
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<div class="wx-item" {onclick}>
+		{#if icon}<i class="{icon} {css}"></i>{/if}
 		{text}
 	</div>
 {:else}
-	<Button {icon} {type} {css} title={text} {disabled} on:click />
+	<Button {icon} {type} {css} title={text} {disabled} {onclick} />
 {/if}
 
 <style>

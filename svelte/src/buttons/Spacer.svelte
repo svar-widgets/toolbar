@@ -1,4 +1,4 @@
-<div class="wx-spacer" />
+<div class="wx-spacer"></div>
 
 <style>
 	.wx-spacer {

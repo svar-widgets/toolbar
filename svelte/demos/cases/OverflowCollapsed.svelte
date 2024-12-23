@@ -4,21 +4,21 @@
 
 	registerToolbarItem("richselect", RichSelect);
 
-	let message = "";
-	let width = 650;
+	let message = $state("");
+	let width = $state(650);
 
 	let fontFamily = "Arial";
 	let fontFamilyData = [
-		{ id: "Arial", name: "Arial" },
-		{ id: "Tahoma", name: "Tahoma" },
-		{ id: "Times New Roman", name: "Times" },
+		{ id: "Arial", label: "Arial" },
+		{ id: "Tahoma", label: "Tahoma" },
+		{ id: "Times New Roman", label: "Times" },
 	];
 	let fontSize = "14px";
 	let fontSizeData = [
-		{ id: "12px", name: "12" },
-		{ id: "14px", name: "14" },
-		{ id: "16px", name: "16" },
-		{ id: "18px", name: "18" },
+		{ id: "12px", label: "12" },
+		{ id: "14px", label: "14" },
+		{ id: "16px", label: "16" },
+		{ id: "18px", label: "18" },
 	];
 	const widths = [650, 450, 300, 700, 310, 460];
 	function changeWidth() {
@@ -27,6 +27,9 @@
 	}
 	function onClick(item) {
 		message = "Button '" + item.id + "' clicked";
+	}
+	function onChange(item, value) {
+		message = item.key + " changed: " + value;
 	}
 
 	let items = [
@@ -73,19 +76,19 @@
 			text: "Font",
 			items: [
 				{
-					id: "font-family",
+					key: "font-family",
 					comp: "richselect",
 					css: "wideSelect",
 					options: fontFamilyData,
 					value: fontFamily,
-					key: "family",
+					handler: onChange,
 				},
 				{
-					id: "font-size",
+					key: "font-size",
 					comp: "richselect",
 					options: fontSizeData,
 					value: fontSize,
-					key: "size",
+					handler: onChange,
 				},
 			],
 		},

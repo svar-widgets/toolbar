@@ -1,12 +1,10 @@
 <script>
-	export let text;
-	export let value;
-	const SLOTS = $$props.$$slots;
+	const { text, value, children } = $props();
 </script>
 
-{#if SLOTS}
+{#if children}
 	<div class="wx-label">
-		<slot />
+		{@render children()}
 	</div>
 {:else}
 	<div class="wx-label">{value || text}</div>

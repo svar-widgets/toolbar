@@ -2,7 +2,7 @@
 	import { Toolbar } from "../../src/index";
 
 	let width = 480;
-	let message = "";
+	let message = $state("");
 
 	function onClick(item) {
 		message = "Button '" + item.id + "' clicked";

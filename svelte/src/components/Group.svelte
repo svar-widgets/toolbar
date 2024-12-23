@@ -1,24 +1,20 @@
 <script>
-	import { createEventDispatcher } from "svelte";
+	import Group from "./Group.svelte";
+
 	import BarComponent from "./BarComponent.svelte";
 	import { Dropdown } from "wx-svelte-core";
 
-	const dispatch = createEventDispatcher();
+	let { item, values = null, menu = false, onchange, onclick } = $props();
 
-	export let item;
-	export let values = null;
-	export let menu = false;
-
-	let collapsed = false;
-	$: if (item.collapsed) collapsed = true;
+	let collapsedState = $state(true);
 
 	const onClick = ev => {
-		cancel();
-		dispatch("click", ev.detail);
+		oncancel();
+		onclick && onclick(ev);
 	};
 
-	const show = () => (collapsed = false);
-	const cancel = () => (collapsed = true);
+	const show = () => (collapsedState = false);
+	const oncancel = () => (collapsedState = true);
 </script>
 
 <div
@@ -27,24 +23,26 @@
 	class:wx-group-collapsed={item.collapsed && !menu}
 >
 	{#if item.collapsed && !menu}
-		<div class="wx-collapsed" on:click={show}>
-			{#if item.icon}<i class="icon {item.icon}" />{/if}
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
+		<div class="wx-collapsed" onclick={show}>
+			{#if item.icon}<i class="icon {item.icon}"></i>{/if}
 			{#if item.text}
 				<div class="wx-label-text">{item.text}</div>
 			{/if}
 			{#if item.text && !item.icon}
-				<i class="wx-label-arrow wxi-angle-down" />
+				<i class="wx-label-arrow wxi-angle-down"></i>
 			{/if}
 		</div>
-		{#if !collapsed}
-			<Dropdown width="" {cancel}>
+		{#if !collapsedState}
+			<Dropdown width="" {oncancel}>
 				<div class="wx-drop-group">
-					<svelte:self
+					<Group
 						item={{ ...item, text: "", collapsed: false }}
 						{values}
 						{menu}
-						on:change
-						on:click={onClick}
+						{onchange}
+						onclick={onClick}
 					/>
 				</div>
 			</Dropdown>
@@ -53,18 +51,13 @@
 		<div class="wx-tb-body">
 			{#each item.items as sub}
 				{#if sub.items}
-					<svelte:self
-						item={sub}
-						{values}
-						on:click={onClick}
-						on:change
-					/>
+					<Group item={sub} {values} onclick={onClick} {onchange} />
 				{:else}
 					<BarComponent
 						item={sub}
 						{values}
-						on:click={onClick}
-						on:change
+						onclick={onClick}
+						{onchange}
 					/>
 				{/if}
 			{/each}

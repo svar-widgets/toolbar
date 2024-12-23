@@ -16,24 +16,6 @@
 
 A Svelte UI component for building flexible button panels, from simple button sets to complex structures with numerous buttons and select boxes. It provides an easy way to organize and display multiple toolbar items, with support for multiline layouts and collapsible item groups that can be shown on demand.
 
-### Versions for Svelte 4 and 5
-
-There are two versions of the Toolbar component: 
-- version **1.x** was designed to work with Svelte 4
-- version **2.x** is created for Svelte 5 (please note that this version is in beta and may contain some instabilities)
-
-To use SVAR Toolbar v.2.0 beta for Svelte 5, install it as follows:
-
-```
-npm install wx-svelte-toolbar
-```
-
-To use SVAR Toolbar for Svelte 4:
-
-```
-npm install wx-svelte-toolbar@1.3.0
-```
-
 ### How to Use
 
 To use the widget, simply import the package and include the component in your Svelte file:
@@ -58,6 +40,22 @@ To use the widget, simply import the package and include the component in your S
 </script>
 
 <Toolbar {items} />
+```
+
+### Svelte 4 and Svelte 5 versions
+
+There are two versions of the library: the 1.x version, designed to work with Svelte 4, and the 2.x version, created for Svelte 5. Please note that the 2.x version is in beta and may contain some instabilities.
+
+To use the SVAR Toolbar beta for Svelte 5, install it as follows:
+
+```
+npm install wx-svelte-toolbar
+```
+
+To use the SVAR Toolbar for Svelte 4:
+
+```
+npm install wx-svelte-toolbar@1.3.0
 ```
 
 ### How to Modify
