@@ -4785,11 +4785,6 @@ wx-core-locales@2.0.1:
   resolved "https://registry.yarnpkg.com/wx-core-locales/-/wx-core-locales-2.0.1.tgz#f4f409bfd7d4e0f6f1496e80b33c7cc7def5a6ac"
   integrity sha512-GK3C/aDpMycROlp/FKUp06PRupakJcYEGNBDjP6Rcgr86uGpIcm7GJ92P2gN0m0xVt7tVIobPwlNst2LXROpxw==
 
-wx-lib-dom@0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/wx-lib-dom/-/wx-lib-dom-0.7.0.tgz#f60441e4b098b6e4c2a760032060d03ec38bc248"
-  integrity sha512-HdyQC5i2V+NqacPJqLDagMbZKdqvgSM8USml4RAhP2jt1tjyHuNjWplUkpFQCjLpYO6xKnKQvwitfTyy6zR9ug==
-
 wx-lib-dom@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/wx-lib-dom/-/wx-lib-dom-0.7.1.tgz#6cbd29f198c132ed81a50ba5f98671c1de334f42"
