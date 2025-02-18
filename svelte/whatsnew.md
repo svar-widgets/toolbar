@@ -1,41 +1,57 @@
-### 2.0.1
+## 2.1.0
 
--   [add] svelte 5 support
+-   Using core@2.1.0
 
-### 1.3.0
+## 2.0.1
 
--   [dev] using core@1.3.0
+### New features
 
-### 1.2.3
+-   Svelte 5 support
 
--   [fix] regression in overflow menu closing
--   [fix] regression in dropdown rendering
--   [deps] uses core@1.2.3
+## 1.3.0
 
-### 1.2.1
+-   Using core@1.3.0
 
--   [deps] uses core@1.2.0
+## 1.2.3
 
-### 1.2.1
+### Fixes
 
--   [add] labels can be bound to data
+-   Regression in overflow menu closing
+-   Regression in dropdown rendering
 
-### 1.2.0
+## 1.2.1
 
--   [add] extra demo for the HeaderMenu scenario
--   [add] ability to use `spacer` on toolbar items
--   [add] ability to use `item` subtype for the drop-down menus
--   [fix] separator rendering in drop-down menus
--   [fix] names of css classes corrected
+-   Using core@1.2.0
 
-### 1.1.2
+## 1.2.1
 
--   [update] inner css classes renamed, "wx" prefix added
+### New features
 
-### 1.1.1
+-   Labels can be bound to data
 
--   [dev] migrated to vite based toolchain
+## 1.2.0
+
+### New features
+
+-   Extra demo for the HeaderMenu scenario
+-   Ability to use `spacer` on toolbar items
+-   Ability to use `item` subtype for the drop-down menus
+
+### Fixes
+
+-   Separator rendering in drop-down menus
+-   Names of css classes corrected
+
+## 1.1.2
+
+### Updates
+
+-   Inner css classes renamed, "wx" prefix added
+
+## 1.1.1
+
+-   Migrated to vite based toolchain
 
 ### 1.1.0
 
-Initial version
+-   Initial version
