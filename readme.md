@@ -16,6 +16,12 @@
 
 **SVAR Toolbar** is a Svelte UI component for building flexible button panels, from simple button sets to complex structures with numerous buttons and select boxes. It provides an easy way to organize and display multiple toolbar items, with support for multiline layouts and collapsible item groups that can be shown on demand.
 
+<div align="center">
+	
+<img src="https://svar.dev/images/github/github-toolbar.png" alt="Svelte Toolbar Component" style="width: 800px;">
+
+</div>
+
 ### How to Use
 
 To use the toolbar, simply import the package and include the component in your Svelte file:
