@@ -11,15 +11,30 @@ import Ribbon from "./cases/Ribbon.svelte";
 import HeaderMenu from "./cases/HeaderMenu.svelte";
 
 export const links = [
-	["/base/:skin", "Toolbar basic", BasicInit],
-	["/multiline/:skin", "Multiline", MultiLine],
-	["/collapsed/:skin", "Collapsed sections", CollapsedGroups],
-	["/ribbon/:skin", "Ribbon", Ribbon],
-	["/buttons/:skin", "Button types", Buttons],
-	["/values/:skin", "Binding values", Values],
-	["/menu/:skin", "Overflow menu", OverflowMenu],
-	["/wrap/:skin", "Overflow wrap", OverflowWrap],
-	["/menu-groups]/:skin", "Overflow menu groups", OverflowMenuGroups],
-	["/sections/:skin", "Overflow collapse", OverflowCollapsed],
-	["/header/:skin", "Header menu", HeaderMenu],
+	["/base/:skin", "Toolbar basic", BasicInit, "BasicInit"],
+	["/multiline/:skin", "Multiline", MultiLine, "MultiLine"],
+	[
+		"/collapsed/:skin",
+		"Collapsed sections",
+		CollapsedGroups,
+		"CollapsedGroups",
+	],
+	["/ribbon/:skin", "Ribbon", Ribbon, "Ribbon"],
+	["/buttons/:skin", "Button types", Buttons, "Buttons"],
+	["/values/:skin", "Binding values", Values, "Values"],
+	["/menu/:skin", "Overflow menu", OverflowMenu, "OverflowMenu"],
+	["/wrap/:skin", "Overflow wrap", OverflowWrap, "OverflowWrap"],
+	[
+		"/menu-groups/:skin",
+		"Overflow menu groups",
+		OverflowMenuGroups,
+		"OverflowMenuGroups",
+	],
+	[
+		"/sections/:skin",
+		"Overflow collapse",
+		OverflowCollapsed,
+		"OverflowCollapsed",
+	],
+	["/header/:skin", "Header menu", HeaderMenu, "HeaderMenu"],
 ];

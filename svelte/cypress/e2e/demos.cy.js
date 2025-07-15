@@ -2,7 +2,7 @@ const cases = [
 	"/base/:skin",
 	"/buttons/:skin",
 	"/collapsed/:skin",
-	"/menu-groups]/:skin",
+	"/menu-groups/:skin",
 	"/menu/:skin",
 	"/multiline/:skin",
 	"/ribbon/:skin",
