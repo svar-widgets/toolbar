@@ -1,5 +1,5 @@
 <script>
-	import { Button } from "wx-svelte-core";
+	import { Button } from "@svar-ui/svelte-core";
 
 	let { icon, text = "", css, type, disabled, menu, onclick } = $props();
 </script>

@@ -37,9 +37,9 @@
 			{value}
 			onchange={detectChange}
 			onclick={onClick}
-			{text}
 			{menu}
 			{...item}
+			{text}
 		/>
 	</div>
 {/if}

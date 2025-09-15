@@ -1,7 +1,7 @@
 <script>
 	import BarComponent from "./BarComponent.svelte";
 	import Group from "./Group.svelte";
-	import { Dropdown, Button } from "wx-svelte-core";
+	import { Dropdown, Button } from "@svar-ui/svelte-core";
 
 	let { items = [], css, values, width, onclick, onchange } = $props();
 

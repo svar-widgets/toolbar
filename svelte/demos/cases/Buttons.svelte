@@ -16,7 +16,7 @@
 		TwoState,
 		Combo,
 		MultiCombo,
-	} from "wx-svelte-core";
+	} from "@svar-ui/svelte-core";
 
 	let message = $state("");
 	const handler = ev => {

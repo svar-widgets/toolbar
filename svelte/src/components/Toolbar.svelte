@@ -3,7 +3,7 @@
 	import Group from "./Group.svelte";
 	import BarComponent from "./BarComponent.svelte";
 
-	import { uid } from "wx-lib-dom";
+	import { uid } from "@svar-ui/lib-dom";
 	import { onMount, tick } from "svelte";
 
 	let {

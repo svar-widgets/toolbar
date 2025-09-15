@@ -1,6 +1,6 @@
 <script>
 	import { Toolbar } from "../../src/index";
-	import { Slider, Button } from "wx-svelte-core";
+	import { Slider, Button } from "@svar-ui/svelte-core";
 
 	let message = $state("");
 	const handler = ev => {

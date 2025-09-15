@@ -1,5 +1,5 @@
 {
-	"name": "wx-svelte-toolbar",
+	"name": "@svar-ui/svelte-toolbar",
 	"version": "2.2.1",
 	"description": "Svelte toolbar component. Lightweight, customizable, easy-to-use.",
 	"productTag": "toolbar",
@@ -32,8 +32,8 @@
 	},
 	"homepage": "https://svar.dev/svelte/core/",
 	"dependencies": {
-		"wx-svelte-core": "2.2.1",
-		"wx-lib-dom": "0.9.1"
+		"@svar-ui/svelte-core": "2.2.1",
+		"@svar-ui/lib-dom": "0.9.2"
 	},
 	"files": [
 		"src",

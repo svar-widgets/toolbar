@@ -1,6 +1,6 @@
 <script>
 	import { Toolbar, registerToolbarItem } from "../../src/index";
-	import { RichSelect } from "wx-svelte-core";
+	import { RichSelect } from "@svar-ui/svelte-core";
 
 	registerToolbarItem("richselect", RichSelect);
 

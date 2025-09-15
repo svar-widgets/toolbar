@@ -41,14 +41,16 @@
 			comp: "icon",
 			icon: "wxi-content-copy",
 			handler: onClick,
-			text: "Copy",
+			text: "Ctrl+C",
+			menuText: "Copy",
 		},
 		{
 			id: "edit",
 			comp: "icon",
 			icon: "wxi-edit-outline",
 			handler: onClick,
-			text: "Edit",
+			text: "Ctrl+E",
+			menuText: "Edit",
 		},
 		{ id: "delete", comp: "button", text: "Delete", handler: onClick },
 	];
