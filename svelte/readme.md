@@ -2,9 +2,9 @@
 	
 # SVAR Svelte Toolbar
 
-[![npm](https://img.shields.io/npm/v/wx-svelte-toolbar.svg)](https://www.npmjs.com/package/wx-svelte-toolbar)
+[![npm](https://img.shields.io/npm/v/wx-svelte-toolbar.svg)](https://www.npmjs.com/package/@svar-ui/svelte-toolbar)
 [![License](https://img.shields.io/github/license/svar-widgets/toolbar)](https://github.com/svar-widgets/toolbar/blob/main/license.txt)
-[![npm downloads](https://img.shields.io/npm/dm/wx-svelte-toolbar.svg)](https://www.npmjs.com/package/wx-svelte-toolbar)
+[![npm downloads](https://img.shields.io/npm/dm/wx-svelte-toolbar.svg)](https://www.npmjs.com/package/@svar-ui/svelte-toolbar)
 
 </div>
 
@@ -22,7 +22,7 @@ To use the widget, simply import the package and include the component in your S
 
 ```svelte
 <script>
-	import { Toolbar } from "wx-svelte-toolbar";
+	import { Toolbar } from "@svar-ui/svelte-toolbar";
 
 	function onClick(item) {
 		message = "Button '" + item.id + "' clicked";
