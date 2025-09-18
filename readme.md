@@ -55,7 +55,7 @@ There are two versions of the library: the 1.x version, designed to work with Sv
 To use the SVAR Toolbar beta for Svelte 5, install it as follows:
 
 ```
-npm install wx-svelte-toolbar
+npm install @svar-ui/svelte-toolbar
 ```
 
 To use the SVAR Toolbar for Svelte 4:
