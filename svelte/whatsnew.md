@@ -1,3 +1,13 @@
+## 2.3.0
+
+### New features
+
+-   TypeScript definitions
+
+### Fixes
+
+-   item `menuText` property is not applied
+
 ## 2.2.1
 
 ### Fixes

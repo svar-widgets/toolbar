@@ -22,7 +22,7 @@
 </script>
 
 {#if item.comp == "spacer"}
-	<Spacer {menu} />
+	<Spacer />
 {:else if item.comp == "separator"}
 	<Separator {menu} />
 {:else}

@@ -9,7 +9,7 @@
 	let {
 		items = $bindable([]),
 		menuCss = "",
-		css,
+		css = "",
 		values = $bindable(null),
 		overflow = "menu",
 		onclick,

@@ -89,7 +89,7 @@
 </script>
 
 <div class="column" style="width: {width}px;">
-	<Toolbar {items} menuWidth="150" overflow="wrap" />
+	<Toolbar {items} overflow="wrap" />
 	<div class="demo-status">{message}</div>
 </div>
 
