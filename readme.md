@@ -2,9 +2,9 @@
 	
 # SVAR Svelte Toolbar
 
-[![npm](https://img.shields.io/npm/v/wx-svelte-toolbar.svg)](https://www.npmjs.com/package/@svar-ui/svelte-toolbar)
+[![npm](https://img.shields.io/npm/v/@svar-ui/svelte-toolbar.svg)](https://www.npmjs.com/package/@svar-ui/svelte-toolbar)
 [![License](https://img.shields.io/github/license/svar-widgets/toolbar)](https://github.com/svar-widgets/toolbar/blob/main/license.txt)
-[![npm downloads](https://img.shields.io/npm/dm/wx-svelte-toolbar.svg)](https://www.npmjs.com/package/@svar-ui/svelte-toolbar)
+[![npm downloads](https://img.shields.io/npm/dm/@svar-ui/svelte-toolbar.svg)](https://www.npmjs.com/package/@svar-ui/svelte-toolbar)
 
 </div>
 
