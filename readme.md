@@ -50,7 +50,7 @@ To use the toolbar, simply import the package and include the component in your 
 
 ### Svelte 4 and Svelte 5 Versions
 
-There are two versions of the library: the 1.x version, designed to work with Svelte 4, and the 2.x version, created for Svelte 5. 
+There are two versions of the library: the 1.x version, designed to work with Svelte 4, and the 2.x version, created for Svelte 5.
 
 To use the SVAR Toolbar beta for Svelte 5, install it as follows:
 

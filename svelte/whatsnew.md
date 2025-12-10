@@ -1,3 +1,7 @@
+## 2.4.0
+
+-   Using core@2.4.0
+
 ## 2.3.0
 
 ### New features
