@@ -1,6 +1,10 @@
+## 2.4.1
+
+-   Using Svelte Core v2.4.1
+
 ## 2.4.0
 
--   Using core@2.4.0
+-   Using Svelte Core v2.4.0
 
 ## 2.3.0
 

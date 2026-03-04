@@ -1,4 +1,5 @@
 <script>
+	import { setID } from "@svar-ui/lib-dom";
 	import { getItemHandler } from "../helpers";
 	import Separator from "../buttons/Separator.svelte";
 	import Spacer from "../buttons/Spacer.svelte";
@@ -31,7 +32,7 @@
 		class="wx-tb-element {item.css || ''}"
 		class:wx-spacer={item.spacer}
 		class:wx-menu={menu}
-		data-id={item.id}
+		data-id={setID(item.id)}
 	>
 		<SvelteComponent
 			{value}
