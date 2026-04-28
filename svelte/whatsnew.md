@@ -1,3 +1,9 @@
+## 2.5.2
+
+### Fixes
+
+-   Impossible to arrange first level items as a column
+
 ## 2.5.1
 
 -   Using Svelte Core v2.5.1

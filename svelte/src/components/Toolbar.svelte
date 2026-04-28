@@ -12,6 +12,7 @@
 		css = "",
 		values = $bindable(null),
 		overflow = "menu",
+		layout = "row",
 		onclick,
 		onchange,
 	} = $props();
@@ -84,7 +85,7 @@
 		let sum = 0;
 		for (let i = 0; i < items.length; i++) {
 			if (items[i].comp != "spacer") {
-				sum += nodes[i].clientWidth;
+				sum += nodes[i]?.clientWidth || 0;
 				if (items[i].comp == "separator") sum += 8;
 			}
 		}
@@ -150,6 +151,7 @@
 <div
 	class="wx-toolbar {css}"
 	class:wx-wrap={overflow === "wrap"}
+	class:wx-column={layout == "column"}
 	bind:this={div}
 >
 	{#each visibleItems as item}
@@ -181,5 +183,8 @@
 	}
 	.wx-toolbar.wx-wrap {
 		flex-wrap: wrap;
+	}
+	.wx-column {
+		flex-flow: column;
 	}
 </style>
