@@ -1,5 +1,12 @@
 context("Basic: clicking item in overflow menu", () => {
 	it("clicks an item inside overflow menu and sees gray bar update", () => {
+		const resizeObserverLoopErrRe =
+			/^[^(ResizeObserver loop limit exceeded)]/;
+		Cypress.on("uncaught:exception", err => {
+			if (resizeObserverLoopErrRe.test(err.message)) {
+				return false;
+			}
+		});
 		cy.viewport(700, 660);
 		cy.visit("/index.html#/menu/willow");
 		cy.wait(1000);

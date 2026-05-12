@@ -13,6 +13,7 @@ export interface IToolbarItem {
 	handler?: (item: IToolbarItem, value?: any) => void;
 	layout?: "column";
 	items?: IToolbarItem[];
+	pinned?: boolean;
 	[key: string]: any;
 }
 

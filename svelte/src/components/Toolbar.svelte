@@ -26,11 +26,16 @@
 	}
 
 	let div = null;
-	let lastToolbarState = -1;
 	let menuItems = $state([]);
 
 	function processOverflow() {
 		if (overflow === "wrap") return;
+
+		const nodes = div.children;
+		// restore all items so widths can be measured
+		for (let i = 0; i < items.length; i++) {
+			if (nodes[i]) nodes[i].style.display = "";
+		}
 
 		const visibleWidth = div.clientWidth;
 		const fullWidth = div.scrollWidth;
@@ -38,45 +43,43 @@
 
 		if (needMenu) {
 			if (overflow === "collapse") return collapseGroups(visibleWidth);
-			// we need to decide how many nodes need to be
-			const nodes = div.children;
-			let sum = 0;
 
+			// pinned items always stay visible
+			let pinnedWidth = 0;
 			for (let i = 0; i < items.length; i++) {
+				if (items[i].pinned) pinnedWidth += nodes[i].clientWidth;
+			}
+
+			let sum = 0;
+			for (let i = 0; i < items.length; i++) {
+				if (items[i].pinned) continue;
 				sum += nodes[i].clientWidth;
 				if (items[i].comp == "separator") sum += 8;
-				if (sum > visibleWidth - 40) {
-					// skip updates, as visibility state was not changed
-					if (lastToolbarState === i) return;
-					lastToolbarState = i;
-
-					// we need to hide nodes[i] and all next nodes
+				if (sum > visibleWidth - 40 - pinnedWidth) {
+					// we need to hide nodes[i] and all next non-pinned nodes
 					menuItems = [];
 					for (let j = i; j < items.length; j++) {
+						if (items[j].pinned) continue;
 						menuItems.push(items[j]);
-						nodes[j].style.visibility = "hidden";
+						nodes[j].style.display = "none";
 					}
 					// hide the ending separator
-					if (i > 0 && items[i - 1].comp == "separator") {
-						nodes[i - 1].style.visibility = "hidden";
+					if (
+						i > 0 &&
+						items[i - 1].comp == "separator" &&
+						!items[i - 1].pinned
+					) {
+						nodes[i - 1].style.display = "none";
 					}
 					break;
 				}
-				nodes[i].style.visibility = "";
 			}
 		} else {
 			const freeWidth = visibleWidth - getTotalWidth();
 			if (freeWidth <= 0) return;
 			if (overflow === "collapse") return expandGroups(freeWidth);
 
-			if (menuItems.length) {
-				lastToolbarState = null;
-				const nodes = div.children;
-				for (let i = 0; i < items.length; i++) {
-					nodes[i].style.visibility = "";
-				}
-				menuItems = [];
-			}
+			if (menuItems.length) menuItems = [];
 		}
 	}
 
@@ -152,6 +155,7 @@
 	class="wx-toolbar {css}"
 	class:wx-wrap={overflow === "wrap"}
 	class:wx-column={layout == "column"}
+	class:wx-has-menu={menuItems.length}
 	bind:this={div}
 >
 	{#each visibleItems as item}
@@ -180,6 +184,10 @@
 		align-items: stretch;
 		padding: 4px;
 		position: relative;
+		min-height: 48px;
+	}
+	.wx-toolbar.wx-has-menu {
+		padding-right: 48px;
 	}
 	.wx-toolbar.wx-wrap {
 		flex-wrap: wrap;

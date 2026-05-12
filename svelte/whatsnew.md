@@ -1,8 +1,9 @@
-## 2.5.2
+## 2.5.3
 
 ### Fixes
 
 -   Impossible to arrange first level items as a column
+-   Impossible to fix certain items as always visible
 
 ## 2.5.1
 

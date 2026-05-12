@@ -1,5 +1,6 @@
 import BasicInit from "./cases/BasicInit.svelte";
 import OverflowMenu from "./cases/OverflowMenu.svelte";
+import OverflowMenuPinned from "./cases/OverflowMenuPinned.svelte";
 import OverflowMenuGroups from "./cases/OverflowMenuGroups.svelte";
 import OverflowCollapsed from "./cases/OverflowCollapsed.svelte";
 import MultiLine from "./cases/MultiLine.svelte";
@@ -23,6 +24,12 @@ export const links = [
 	["/buttons/:skin", "Button types", Buttons, "Buttons"],
 	["/values/:skin", "Binding values", Values, "Values"],
 	["/menu/:skin", "Overflow menu", OverflowMenu, "OverflowMenu"],
+	[
+		"/menu-pinned/:skin",
+		"Overflow menu pinned",
+		OverflowMenuPinned,
+		"OverflowMenuPinned",
+	],
 	["/wrap/:skin", "Overflow wrap", OverflowWrap, "OverflowWrap"],
 	[
 		"/menu-groups/:skin",

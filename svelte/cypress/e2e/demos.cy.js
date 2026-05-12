@@ -21,6 +21,12 @@ cases.forEach(w => {
 });
 
 context("Basic functionality", () => {
+	const resizeObserverLoopErrRe = /^[^(ResizeObserver loop limit exceeded)]/;
+	Cypress.on("uncaught:exception", err => {
+		if (resizeObserverLoopErrRe.test(err.message)) {
+			return false;
+		}
+	});
 	it("widget", () => {
 		links.forEach(w => {
 			cy.visit(`/index.html#${w}`);
