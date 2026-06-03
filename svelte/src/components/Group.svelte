@@ -3,6 +3,7 @@
 
 	import BarComponent from "./BarComponent.svelte";
 	import { Dropdown } from "@svar-ui/svelte-core";
+	import { collapseSeparators } from "../helpers";
 
 	let { item, values = null, menu = false, onchange, onclick } = $props();
 
@@ -49,7 +50,7 @@
 		{/if}
 	{:else}
 		<div class="wx-tb-body">
-			{#each item.items as sub}
+			{#each collapseSeparators(item.items) as sub}
 				{#if sub.items}
 					<Group item={sub} {values} onclick={onClick} {onchange} />
 				{:else}

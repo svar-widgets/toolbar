@@ -5,9 +5,13 @@ export interface IToolbarItem {
 	comp?: string | Component<any>;
 	icon?: string;
 	css?: string;
+	type?: string;
+	title?: string;
 	text?: string;
+	tooltip?: string;
 	menuText?: string;
 	key?: string;
+	disabled?: boolean;
 	spacer?: boolean;
 	collapsed?: boolean;
 	handler?: (item: IToolbarItem, value?: any) => void;

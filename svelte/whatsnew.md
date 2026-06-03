@@ -1,3 +1,13 @@
+## 2.6.0
+
+### New features
+
+-   Tooltip for toolbar items
+
+### Fixes
+
+-   Duplicate separators are auto removed
+
 ## 2.5.3
 
 ### Fixes

@@ -3,8 +3,8 @@
 	import Group from "./Group.svelte";
 	import BarComponent from "./BarComponent.svelte";
 
-	import { uid } from "@svar-ui/lib-dom";
 	import { onMount, tick } from "svelte";
+	import { normalizeToolbarItems } from "../helpers";
 
 	let {
 		items = $bindable([]),
@@ -28,12 +28,62 @@
 	let div = null;
 	let menuItems = $state([]);
 
+	const barItems = $derived(normalizeToolbarItems(items));
+
+	function getTotalWidth() {
+		const nodes = div.children;
+		let sum = 0;
+		for (let i = 0; i < barItems.length; i++) {
+			if (barItems[i].comp != "spacer") {
+				sum += nodes[i]?.clientWidth || 0;
+				if (barItems[i].comp == "separator") sum += 8;
+			}
+		}
+		return sum;
+	}
+
+	function collapseGroups() {
+		for (let i = barItems.length - 1; i >= 0; i--) {
+			// close rightmost open group
+			if (barItems[i].items && !barItems[i].collapsed) {
+				barItems[i].collapsed = true;
+				barItems[i].$width = div.children[i].offsetWidth;
+				// check after dom update, maybe we need to close more
+				tick().then(processOverflow);
+
+				// items are not deep reactive, so we need to trigger the update
+				items = [...items];
+				return;
+			}
+		}
+	}
+
+	function expandGroups(freeSpace) {
+		for (let i = 0; i < barItems.length; i++) {
+			// open leftmost closed group that was collapsed by overflow
+			if (barItems[i].collapsed && barItems[i].$width) {
+				// check if group can fit in free space
+				if (
+					barItems[i].$width - div.children[i].offsetWidth <
+					freeSpace + 10
+				) {
+					barItems[i].collapsed = false;
+					// items are not deep reactive, so we need to trigger the update
+					items = [...items];
+					// check after dom update, maybe we can open one more
+					tick().then(processOverflow);
+				}
+				return;
+			}
+		}
+	}
+
 	function processOverflow() {
 		if (overflow === "wrap") return;
 
 		const nodes = div.children;
 		// restore all items so widths can be measured
-		for (let i = 0; i < items.length; i++) {
+		for (let i = 0; i < barItems.length; i++) {
 			if (nodes[i]) nodes[i].style.display = "";
 		}
 
@@ -42,32 +92,32 @@
 		const needMenu = fullWidth > visibleWidth;
 
 		if (needMenu) {
-			if (overflow === "collapse") return collapseGroups(visibleWidth);
+			if (overflow === "collapse") return collapseGroups();
 
 			// pinned items always stay visible
 			let pinnedWidth = 0;
-			for (let i = 0; i < items.length; i++) {
-				if (items[i].pinned) pinnedWidth += nodes[i].clientWidth;
+			for (let i = 0; i < barItems.length; i++) {
+				if (barItems[i].pinned) pinnedWidth += nodes[i].clientWidth;
 			}
 
 			let sum = 0;
-			for (let i = 0; i < items.length; i++) {
-				if (items[i].pinned) continue;
+			for (let i = 0; i < barItems.length; i++) {
+				if (barItems[i].pinned) continue;
 				sum += nodes[i].clientWidth;
-				if (items[i].comp == "separator") sum += 8;
+				if (barItems[i].comp == "separator") sum += 8;
 				if (sum > visibleWidth - 40 - pinnedWidth) {
 					// we need to hide nodes[i] and all next non-pinned nodes
 					menuItems = [];
-					for (let j = i; j < items.length; j++) {
-						if (items[j].pinned) continue;
-						menuItems.push(items[j]);
+					for (let j = i; j < barItems.length; j++) {
+						if (barItems[j].pinned) continue;
+						menuItems.push(barItems[j]);
 						nodes[j].style.display = "none";
 					}
 					// hide the ending separator
 					if (
 						i > 0 &&
-						items[i - 1].comp == "separator" &&
-						!items[i - 1].pinned
+						barItems[i - 1].comp == "separator" &&
+						!barItems[i - 1].pinned
 					) {
 						nodes[i - 1].style.display = "none";
 					}
@@ -83,72 +133,14 @@
 		}
 	}
 
-	function getTotalWidth() {
-		const nodes = div.children;
-		let sum = 0;
-		for (let i = 0; i < items.length; i++) {
-			if (items[i].comp != "spacer") {
-				sum += nodes[i]?.clientWidth || 0;
-				if (items[i].comp == "separator") sum += 8;
-			}
-		}
-		return sum;
-	}
-
-	function collapseGroups() {
-		for (let i = items.length - 1; i >= 0; i--) {
-			// close rightmost open group
-			if (items[i].items && !items[i].collapsed) {
-				items[i].collapsed = true;
-				items[i].$width = div.children[i].offsetWidth;
-				// check after dom update, maybe we need to close more
-				tick().then(processOverflow);
-
-				// items are not deep reactive, so we need to trigger the update
-				items = [...items];
-				return;
-			}
-		}
-	}
-
-	function expandGroups(freeSpace) {
-		for (let i = 0; i < items.length; i++) {
-			// close leftmost closed group, that was closed previously
-			if (items[i].collapsed && items[i].$width) {
-				// check if group can fit in free space
-				if (
-					items[i].$width - div.children[i].offsetWidth <
-					freeSpace + 10
-				) {
-					items[i].collapsed = false;
-					// check after dom update, maybe we can open one more
-					tick().then(processOverflow);
-				}
-
-				items = [...items];
-				return;
-			}
-		}
-	}
-
-	// rebuild toolbar items, inject group nodes
-	function normalize(items) {
-		items.forEach(item => {
-			if (!item.id) item.id = uid();
-		});
-		return items;
-	}
-
 	onMount(() => {
-		const resizeObserver = new ResizeObserver(() => processOverflow(div));
+		const resizeObserver = new ResizeObserver(() => processOverflow());
 		resizeObserver.observe(div);
 
 		return () => {
-			if (resizeObserver) resizeObserver.unobserve(div);
+			resizeObserver.unobserve(div);
 		};
 	});
-
-	const visibleItems = $derived(normalize(items));
 </script>
 
 <div
@@ -158,7 +150,7 @@
 	class:wx-has-menu={menuItems.length}
 	bind:this={div}
 >
-	{#each visibleItems as item}
+	{#each barItems as item}
 		{#if item.items}
 			<Group {item} {values} {onclick} onchange={handleChange} />
 		{:else}

@@ -1,7 +1,17 @@
 <script>
 	import { Button } from "@svar-ui/svelte-core";
 
-	let { icon, text = "", css, type, disabled, menu, onclick } = $props();
+	let {
+		icon,
+		title,
+		text = "",
+		tooltip,
+		css,
+		type,
+		disabled,
+		menu,
+		onclick,
+	} = $props();
 </script>
 
 {#if menu}
@@ -12,7 +22,7 @@
 		{text}
 	</div>
 {:else}
-	<Button {icon} {type} {css} {text} {disabled} {onclick} />
+	<Button {icon} {type} {css} {title} {text} {tooltip} {disabled} {onclick} />
 {/if}
 
 <style>
