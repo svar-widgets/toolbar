@@ -8,8 +8,8 @@
 {#if menu}
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
-	<div class="wx-item" {onclick}>
-		{#if icon}<i class="{icon} {css}"></i>{/if}
+	<div class="wx-item" class:wx-text-icon={text} {onclick}>
+		<i class="{icon || 'wxi-empty'} {css || ''}"></i>
 		{text}
 	</div>
 {:else}
@@ -18,9 +18,11 @@
 
 <style>
 	i {
-		margin-right: 8px;
 		font-size: var(--wx-icon-size);
 		color: var(--wx-color-font);
+	}
+	.wx-text-icon i {
+		margin-right: 8px;
 	}
 	.wx-item {
 		cursor: pointer;

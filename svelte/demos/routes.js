@@ -11,6 +11,7 @@ import Values from "./cases/Values.svelte";
 import Ribbon from "./cases/Ribbon.svelte";
 import HeaderMenu from "./cases/HeaderMenu.svelte";
 import Tooltips from "./cases/Tooltips.svelte";
+import VerticalBar from "./cases/VerticalBar.svelte";
 
 export const links = [
 	["/base/:skin", "Toolbar basic", BasicInit, "BasicInit"],
@@ -46,4 +47,5 @@ export const links = [
 		"OverflowCollapsed",
 	],
 	["/header/:skin", "Header menu", HeaderMenu, "HeaderMenu"],
+	["/vertical/:skin", "Vertical toolbar", VerticalBar, "VerticalBar"],
 ];

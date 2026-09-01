@@ -29,6 +29,7 @@
 	let menuItems = $state([]);
 
 	const barItems = $derived(normalizeToolbarItems(items));
+	const vertical = $derived(layout === "column");
 
 	function getTotalWidth() {
 		const nodes = div.children;
@@ -79,7 +80,7 @@
 	}
 
 	function processOverflow() {
-		if (overflow === "wrap") return;
+		if (overflow === "wrap" || vertical) return;
 
 		const nodes = div.children;
 		// restore all items so widths can be measured
@@ -146,7 +147,7 @@
 <div
 	class="wx-toolbar {css}"
 	class:wx-wrap={overflow === "wrap"}
-	class:wx-column={layout == "column"}
+	class:wx-column={vertical}
 	class:wx-has-menu={menuItems.length}
 	bind:this={div}
 >
@@ -186,5 +187,9 @@
 	}
 	.wx-column {
 		flex-flow: column;
+		width: auto;
+	}
+	.wx-column :global(.wx-tb-element) {
+		width: 100%;
 	}
 </style>

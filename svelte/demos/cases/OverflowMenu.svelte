@@ -1,5 +1,8 @@
 <script>
-	import { Toolbar } from "../../src/index";
+	import { Toolbar, ButtonList, registerToolbarItem } from "../../src/index";
+	import { Segmented } from "@svar-ui/svelte-core";
+	registerToolbarItem("segmented", Segmented);
+	registerToolbarItem("segmented", ButtonList, { menu: true });
 
 	let width = $state(270);
 	let message = $state("");
@@ -54,7 +57,16 @@
 			text: "Edit",
 			title: "Ctrl+E",
 		},
-		{ id: "delete", comp: "button", text: "Delete", handler: onClick },
+		{
+			id: "mode",
+			comp: "segmented",
+			value: "1",
+			options: [
+				{ id: "1", label: "All" },
+				{ id: "2", label: "Active" },
+			],
+			handler: onClick,
+		},
 	];
 </script>
 

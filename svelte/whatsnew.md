@@ -1,3 +1,10 @@
+## 2.6.1
+
+### Updates
+
+-   Impossible to render an item differently in the `menu` mode
+-   Option based items are not usable in the `menu` mode
+
 ## 2.6.0
 
 ### New features

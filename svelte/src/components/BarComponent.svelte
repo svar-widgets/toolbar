@@ -5,8 +5,7 @@
 	import Spacer from "../buttons/Spacer.svelte";
 
 	let { item = {}, menu = false, values, onclick, onchange } = $props();
-
-	let itemComponent = $derived(getItemHandler(item.comp || "label"));
+	let itemComponent = $derived(getItemHandler(item.comp, { menu }));
 
 	function onClick() {
 		if (item.handler) item.handler(item);
@@ -56,29 +55,15 @@
 		display: flex;
 	}
 	.wx-menu.wx-tb-element {
-		height: 36px;
 		line-height: 36px;
 		padding: 2px 8px;
 		background-color: var(--wx-background);
 	}
-
 	.wx-menu :global(button) {
 		width: 100%;
-		background: transparent;
-		text-align: left;
-		padding-left: 0;
-		font-weight: var(--wx-font-weight);
-		font-size: var(--wx-font-size);
 	}
 	.wx-menu :global(.wx-tb-element) {
 		align-self: stretch;
-	}
-	.wx-menu.wx-tb-element :global(button:hover) {
-		background: var(--wx-background-alt);
-	}
-	.wx-menu :global(button i) {
-		margin-right: 4px;
-		font-size: var(--wx-icon-size);
 	}
 	.wx-menu.wx-tb-element:hover {
 		background: var(--wx-background-alt);

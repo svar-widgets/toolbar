@@ -1,11 +1,17 @@
 import { uid } from "@svar-ui/lib-dom";
 
 const handlers = {};
-export function getItemHandler(type) {
-	return handlers[type] || type;
+export function getItemHandler(type, config = null) {
+	// try to get the handler for the config, fallback to the type
+	// so we need not register all button types for alternative modes
+	const c =
+		typeof type === "string"
+			? handlers[getID(type, config)] || handlers[type]
+			: type;
+	return c || handlers["label"];
 }
-export function registerToolbarItem(type, handler) {
-	handlers[type] = handler;
+export function registerToolbarItem(type, handler, config = null) {
+	handlers[getID(type, config)] = handler;
 }
 
 // Assign stable ids and collapse consecutive separators
@@ -29,4 +35,8 @@ export function collapseSeparators(items) {
 		prevWasSeparator = isSeparator;
 	}
 	return out;
+}
+
+function getID(type, config = null) {
+	return `${type}${config?.menu ? ":menu" : ""}`;
 }
