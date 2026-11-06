@@ -1,0 +1,57 @@
+{
+	"name": "@svar-ui/svelte-toolbar",
+	"version": "2.6.2",
+	"description": "Svelte toolbar component. Lightweight, customizable, easy-to-use.",
+	"keywords": [
+		"buttons panel",
+		"svar widgets",
+		"svelte",
+		"svelte toolbar",
+		"toolbar",
+		"toolbar component"
+	],
+	"homepage": "https://svar.dev/svelte/core/",
+	"bugs": {
+		"url": "https://forum.svar.dev"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/svar-widgets/toolbar.git"
+	},
+	"files": [
+		"dist",
+		"readme.md",
+		"whatsnew.md",
+		"license.txt"
+	],
+	"type": "module",
+	"types": "./dist/index.d.ts",
+	"svelte": "./dist/index.js",
+	"exports": {
+		".": {
+			"svelte": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		},
+		"./package.json": "./package.json"
+	},
+	"scripts": {
+		"check": "svelte-check --tsconfig ./tsconfig.json",
+		"build": "svelte-package -i ./src",
+		"dev": "svelte-package -i ./src --watch"
+	},
+	"dependencies": {
+		"@svar-ui/lib-dom": "catalog:",
+		"@svar-ui/svelte-core": "catalog:"
+	},
+	"devDependencies": {
+		"@sveltejs/package": "catalog:",
+		"@sveltejs/vite-plugin-svelte": "catalog:",
+		"svelte": "catalog:",
+		"svelte-check": "catalog:"
+	},
+	"peerDependencies": {
+		"svelte": "^5.0.0"
+	},
+	"productTag": "toolbar"
+}

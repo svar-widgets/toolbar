@@ -1,0 +1,88 @@
+<script lang="ts">
+	import {
+		Toolbar,
+		ButtonList,
+		registerToolbarItem,
+	} from "@svar-ui/svelte-toolbar";
+	import type { IToolbarItem } from "@svar-ui/svelte-toolbar";
+	import { Segmented } from "@svar-ui/svelte-core";
+	registerToolbarItem("segmented", Segmented);
+	registerToolbarItem("segmented", ButtonList, { menu: true });
+
+	let width = $state(270);
+	let message = $state("");
+
+	function onClick(item: IToolbarItem) {
+		message = "Button '" + item.id + "' clicked";
+	}
+	function changeWidth() {
+		width = width == 500 ? 350 : width == 350 ? 250 : 500;
+	}
+
+	let items: IToolbarItem[] = [
+		{
+			id: "width",
+			comp: "button",
+			text: "Resize column",
+			handler: changeWidth,
+			type: "primary",
+		},
+		{
+			id: "search",
+			comp: "icon",
+			icon: "wxi-search",
+			text: "",
+			css: "right",
+			handler: onClick,
+		},
+		{ comp: "spacer" },
+		{
+			id: "info",
+			comp: "icon",
+			icon: "wxi-information-outline",
+			handler: onClick,
+			text: "Info",
+		},
+		{ comp: "separator" },
+		{ comp: "separator" },
+		{ comp: "separator" },
+		{
+			id: "copy",
+			comp: "icon",
+			icon: "wxi-content-copy",
+			handler: onClick,
+			text: "Copy",
+			title: "Ctrl+C",
+		},
+		{
+			id: "edit",
+			comp: "icon",
+			icon: "wxi-edit-outline",
+			handler: onClick,
+			text: "Edit",
+			title: "Ctrl+E",
+		},
+		{
+			id: "mode",
+			comp: "segmented",
+			value: "1",
+			options: [
+				{ id: "1", label: "All" },
+				{ id: "2", label: "Active" },
+			],
+			handler: onClick,
+		},
+	];
+</script>
+
+<div class="column" style="width: {width}px;">
+	<Toolbar {items} />
+	<div class="demo-status">{message}</div>
+</div>
+
+<style>
+	.column {
+		height: 100%;
+		border-right: 1px solid #ddd;
+	}
+</style>
